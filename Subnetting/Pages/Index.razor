@@ -1,9 +1,35 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Subnetting</PageTitle>
 
-<h1>Hello, world!</h1>
+<form action="formulario.php" method="get">
+    <label for="major">Major network</label>
+    <input type="text" id="major" name="major" required placeholder="xxx.xxx.xxx.xxx/xx">
 
-Welcome to your new app.
+    <label>Subnets</label>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    <label>Name</label>
+    <input type="text" id="name1" name="name1" required placeholder="A">
+    <input type="text" id="name2" name="name2" placeholder="B">
+    <input type="text" id="name3" name="name3" placeholder="C">
+    <label>Size</label>
+    <input type="number" id="size1" name="size1" required placeholder="00">
+    <input type="number" id="size2" name="size2" placeholder="00">
+    <input type="number" id="size3" name="size3" placeholder="00">
+
+    <label for="subnets">Number of subnets</label>
+    <input type="number" id="subnets" name="subnets" required placeholder="X">
+    <button type="button"> Changer </button>
+
+    <select name="menu">
+        <option selected>Size</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@
