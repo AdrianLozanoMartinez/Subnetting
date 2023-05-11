@@ -11,11 +11,24 @@
                          "submit submit submit submit";
     grid-gap: 3vh;  /*Separación entre elementos*/  
     margin-top: 20vh;
-    margin-left: 20vh;
+    margin-left: 10vh;
+}
+
+#parte1, #parte2, #parte3, #parte4{
+    border: solid black 1px;
+    border-radius: 5px;
+    box-shadow: 0 0 30px -10px;
+    padding: 2vh;
+    margin: 1vh;
 }
 
 #parte1{
     grid-area: major;
+    width: 105vh;
+}
+
+#numMajor{
+     width: 70vh;
 }
 
 #parte2{
@@ -23,10 +36,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#numMajor{
-     width: 30vh;
 }
 
 #name{
@@ -43,31 +52,40 @@
 
 #parte4{
     grid-area: size2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 40vh;
 }
 
 #menos{
     width: 5vh;
+    margin-left: 1vh;
+    background: red;
 }
 
 #mas{
     grid-area: mas;
     width: 10vh;
-    margin-left: 42%;
+    margin-left: 44%;
+    background: green;
 }
 
 #result{
     grid-area: result;
 }
 
-#numResult{
-    grid-area: numResult;
-}
-
 #submit{
     grid-area: submit;
+    background: black;
     width: 20vh;
-    margin-left: 37%;
+    margin-left: 40%;
 }
+
+#menos, #mas, #submit{
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px;
+    padding: 16px, 32px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFF;
+}
+
