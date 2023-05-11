@@ -14,10 +14,13 @@
 
     <label id="name">Name</label>
     <div id="parte3">
-        <input type="text" id="nameSubnet" name="name1" required placeholder="A">
+        @if (_isVisible)
+        {
+            <input type="text" id="nameSubnet" name="name1" required placeholder="A">
+        }
+   @*     <br />
         <br />
-        <br />
-        <input type="text" id="nameSubnet2" name="name2" required placeholder="A">
+        <input type="text" id="nameSubnet2" name="name2" required placeholder="A">*@
     </div>
 
     <label id="size">Size</label>
