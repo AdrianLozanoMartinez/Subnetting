@@ -2,61 +2,60 @@
     /*GRID*/
     display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
     grid-template-columns: repeat(4, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
-    grid-template-columns: repeat(6, 1fr); /*Definimos el grosor de las filas, ponemos para que sean 6 filas con el mismo grosor(1fr)*/
+    grid-template-columns: repeat(5, 1fr); /*Definimos el grosor de las filas, ponemos para que sean 6 filas con el mismo grosor(1fr)*/
     /*Estructuramos de cómo se verán cada parte, dónde irá colocado*/
-    grid-template-areas: "major numMajor numMajor numMajor"
-                         "subnets name size size"
-                         "subnets nameSubnet sizeSubnet menos"
+    grid-template-areas: "major major major major"
+                         "subnets name1 size1 size"
+                         "subnets name2 size2 size"
                          "mas mas mas mas"
-                         "result result numResult numResult"
                          "submit submit submit submit";
     grid-gap: 3vh;  /*Separación entre elementos*/  
     margin-top: 20vh;
     margin-left: 20vh;
 }
 
-#major{
+#parte1{
     grid-area: major;
-    height: 2vh;
-    width: 14vh;
 }
 
-#numMajor{
-    grid-area: numMajor;
-}
-
-#subnets{
+#parte2{
     grid-area: subnets;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#numMajor{
+     width: 30vh;
+}
+
 #name{
-    grid-area: name;
+    grid-area: name1;
+}
+
+#parte3{
+    grid-area: name2;
 }
 
 #size{
-    grid-area: size;
+    grid-area: size1;
 }
 
-#nameSubnet{
-    grid-area: nameSubnet;
-}
-
-#sizeSubnet{
-    grid-area: sizeSubnet;
+#parte4{
+    grid-area: size2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #menos{
-    grid-area: menos;
     width: 5vh;
 }
 
 #mas{
     grid-area: mas;
     width: 10vh;
-    margin-left: 45%;
+    margin-left: 42%;
 }
 
 #result{
@@ -70,5 +69,5 @@
 #submit{
     grid-area: submit;
     width: 20vh;
-    margin-left: 40%;
+    margin-left: 37%;
 }
