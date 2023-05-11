@@ -9,7 +9,7 @@
                          "subnets name2 size2 size"
                          "mas mas mas mas"
                          "submit submit submit submit";
-    grid-gap: 3vh;  /*Separación entre elementos*/  
+    grid-gap: 3vh;  /*Separación entre elementos*/
     margin-top: 20vh;
     margin-left: 10vh;
 }
@@ -68,15 +68,39 @@
     background: green;
 }
 
-#result{
-    grid-area: result;
-}
-
 #submit{
     grid-area: submit;
-    background: black;
+    background: #484848;
     width: 20vh;
     margin-left: 40%;
+    position: relative; /*Necesario para que no se pinte todo solo el botón*/
+}
+
+#submit::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, black, blue, black, blue, black, blue, black, blue);
+    background-size: 800%;
+    border-radius: 10px;
+    filter: blur(8px); /*Filtro de desenfoque*/
+    animation: daVueltas 20s linear infinite;
+}
+
+@keyframes daVueltas{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 400% 0; /*posición x y*/
+    }
+    100%{
+        background-position: 0 0;
+    }
 }
 
 #menos, #mas, #submit{
@@ -87,5 +111,9 @@
     font-weight: bold;
     font-size: 20px;
     color: #FFF;
+}
+
+#menos:hover, #mas:hover, #submit:hover{
+   transform: scale(1.5, 1.5);
 }
 
