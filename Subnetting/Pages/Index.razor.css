@@ -11,10 +11,14 @@
                          "result result numResult numResult"
                          "submit submit submit submit";
     grid-gap: 3vh;  /*Separación entre elementos*/  
+    margin-top: 20vh;
+    margin-left: 20vh;
 }
 
 #major{
     grid-area: major;
+    height: 2vh;
+    width: 14vh;
 }
 
 #numMajor{
@@ -23,6 +27,9 @@
 
 #subnets{
     grid-area: subnets;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #name{
@@ -43,10 +50,13 @@
 
 #menos{
     grid-area: menos;
+    width: 5vh;
 }
 
 #mas{
     grid-area: mas;
+    width: 10vh;
+    margin-left: 45%;
 }
 
 #result{
@@ -59,4 +69,6 @@
 
 #submit{
     grid-area: submit;
+    width: 20vh;
+    margin-left: 40%;
 }
