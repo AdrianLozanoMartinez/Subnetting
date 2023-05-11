@@ -1,4 +1,10 @@
 ﻿form{
-	margin-top: 30vh
+    /*GRID*/
+    display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
+    grid-template-columns: repeat(3, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
+    /*Estructuramos de cómo se verán cada parte, dónde irá colocado*/
+    grid-template-areas: "major numMajor numMajor"
+                         "subnets name size"
+                         "subnets nameSubnet sizeSubnet";
+    grid-gap: 3vh;  /*Separación entre elementos*/  
 }
-
