@@ -1,10 +1,62 @@
 ﻿form{
     /*GRID*/
     display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
-    grid-template-columns: repeat(3, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
+    grid-template-columns: repeat(4, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
+    grid-template-columns: repeat(6, 1fr); /*Definimos el grosor de las filas, ponemos para que sean 6 filas con el mismo grosor(1fr)*/
     /*Estructuramos de cómo se verán cada parte, dónde irá colocado*/
-    grid-template-areas: "major numMajor numMajor"
-                         "subnets name size"
-                         "subnets nameSubnet sizeSubnet";
+    grid-template-areas: "major numMajor numMajor numMajor"
+                         "subnets name size size"
+                         "subnets nameSubnet sizeSubnet menos"
+                         "mas mas mas mas"
+                         "result result numResult numResult"
+                         "submit submit submit submit";
     grid-gap: 3vh;  /*Separación entre elementos*/  
+}
+
+#major{
+    grid-area: major;
+}
+
+#numMajor{
+    grid-area: numMajor;
+}
+
+#subnets{
+    grid-area: subnets;
+}
+
+#name{
+    grid-area: name;
+}
+
+#size{
+    grid-area: size;
+}
+
+#nameSubnet{
+    grid-area: nameSubnet;
+}
+
+#sizeSubnet{
+    grid-area: sizeSubnet;
+}
+
+#menos{
+    grid-area: menos;
+}
+
+#mas{
+    grid-area: mas;
+}
+
+#result{
+    grid-area: result;
+}
+
+#numResult{
+    grid-area: numResult;
+}
+
+#submit{
+    grid-area: submit;
 }

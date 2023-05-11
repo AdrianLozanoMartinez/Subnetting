@@ -3,19 +3,19 @@
 <PageTitle>Subnetting</PageTitle>
 
 <form action="formulario.php" method="get">
-    <label for="major">Major network</label>
-    <input type="text" id="major" name="major" required placeholder="xxx.xxx.xxx.xxx/xx">
+    <label for="numMajor" id="major">Major network</label>
+    <input type="text" id="numMajor" name="major" required placeholder="xxx.xxx.xxx.xxx/xx">
 
-    <label>Subnets</label>
+    <label id="subnets">Subnets</label>
 
-    <label>Name</label>
-    <input type="text" id="name1" name="name1" required placeholder="A">
+    <label id="name">Name</label>
+    <input type="text" id="nameSubnet" name="name1" required placeholder="A">
     @*<input type="text" id="name2" name="name2" placeholder="B">
     <input type="text" id="name3" name="name3" placeholder="C">*@
-    <label>Size</label>
-    <input type="number" id="size1" name="size1" required placeholder="00">
+    <label id="size">Size</label>
+    <input type="number" id="sizeSubnet" name="size1" required placeholder="00">
 
-    <button type="button"> - </button>
+    <button type="button" id="menos"> - </button>
 @*    <input type="number" id="size2" name="size2" placeholder="00">
     <input type="number" id="size3" name="size3" placeholder="00">*@
 
@@ -23,17 +23,17 @@
     <input type="number" id="subnets" name="subnets" required placeholder="X">
     <button type="button"> Changer </button>*@
 
-    <button type="button"> + </button>
+    <button id="mas" type="button"> + </button>
 
-    <label>Sort results by:</label>
-    <select name="menu">
+    <label id="result">Sort results by:</label>
+    <select id="numResult" name="menu">
         <option selected>Size</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
 
-    <button type="submit">Submit</button>
+    <button id="submit" type="submit">Submit</button>
 
 </form>
 
