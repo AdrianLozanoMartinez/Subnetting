@@ -17,17 +17,20 @@
         <input type="text" id="nameSubnet" name="name1" required placeholder="A">
         <br />
         <br />
-        <input type="text" id="nameSubnet2" name="name1" required placeholder="A">
+        <input type="text" id="nameSubnet2" name="name2" required placeholder="A">
     </div>
 
     <label id="size">Size</label>
     <div id="parte4">
-        <input type="number" id="sizeSubnet" name="size1" required placeholder="00">
-        <button type="button" id="menos"> - </button>
+        @if (_isVisible)
+        {
+            <input type="number" id="sizeSubnet" name="size1" required placeholder="00" style="@(_isVisible? string.Empty: "display: none")" />
+            <button type="button" id="menos" @onclick="Eliminar">-</button>
+        }
+@*        <br />
         <br />
-        <br />
-        <input type="number" id="sizeSubnet2" name="size1" required placeholder="00">
-        <button type="button" id="menos"> - </button>
+        <input type="number" id="sizeSubnet2" name="size2" required placeholder="00">
+        <button type="button" id="menos2"> - </button>*@
     </div>
 
 
@@ -37,4 +40,11 @@
 
 </form>
 
-@*<SurveyPrompt Title="How is Blazor working for you?" />*@
+@code {
+    private bool _isVisible = true;
+
+    private void Eliminar()
+    {
+        _isVisible = !_isVisible;
+    }
+}

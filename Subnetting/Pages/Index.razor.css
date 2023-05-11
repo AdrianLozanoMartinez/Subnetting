@@ -113,7 +113,10 @@
     color: #FFF;
 }
 
-#menos:hover, #mas:hover, #submit:hover{
-   transform: scale(1.5, 1.5);
+#submit:hover {
+    transform: scale(1.5, 1.5);
 }
 
+#mas:active, #menos:active{
+   transform: scale(1.5, 1.5);
+}
