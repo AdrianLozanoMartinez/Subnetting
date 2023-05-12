@@ -14,40 +14,39 @@
 
     <label id="name">Name</label>
     <div id="parte3">
-        @if (_isVisible)
+        @for (int i = 0; i <= cont; i++)
         {
             <input type="text" id="nameSubnet" name="name1" required placeholder="A">
         }
-   @*     <br />
-        <br />
-        <input type="text" id="nameSubnet2" name="name2" required placeholder="A">*@
     </div>
 
     <label id="size">Size</label>
     <div id="parte4">
-        @if (_isVisible)
+        @for (int i = 0; i <= cont; i++)
         {
-            <input type="number" id="sizeSubnet" name="size1" required placeholder="00" style="@(_isVisible? string.Empty: "display: none")" />
+            <input type="number" id="sizeSubnet" name="size1" required placeholder="00" />
             <button type="button" id="menos" @onclick="Eliminar">-</button>
         }
-@*        <br />
-        <br />
-        <input type="number" id="sizeSubnet2" name="size2" required placeholder="00">
-        <button type="button" id="menos2"> - </button>*@
     </div>
 
 
-    <button id="mas" type="button"> + </button>
+    <button id="mas" type="button" @onclick="Contar"> + </button>
 
     <button id="submit" type="submit">Submit</button>
 
 </form>
 
 @code {
-    private bool _isVisible = true;
+    private bool _isVisible = false;
+    private int cont;
 
     private void Eliminar()
     {
-        _isVisible = !_isVisible;
+        cont--;
+    }
+
+    private void Contar()
+    {
+        cont++;
     }
 }
