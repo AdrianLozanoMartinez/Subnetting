@@ -2,10 +2,10 @@
 
 <PageTitle>Subnetting</PageTitle>
 
-<form action="formulario.php" method="get">
+<form>
     <div id="parte1">
         <label for="numMajor" id="major">Major network</label>
-        <input type="text" id="numMajor" name="major" required placeholder="xxx.xxx.xxx.xxx/xx">
+        <input type="text" id="numMajor" required placeholder="xxx.xxx.xxx.xxx/xx">
     </div>
 
     <div id="parte2">
@@ -18,7 +18,7 @@
           que existen, se añade o elimina desde el último*@
         @for (int i = 0; i <= cont; i++)
         {
-            <input type="text" id="nameSubnet" name="name1" required placeholder="A">
+            <input type="text" id="nameSubnet" required placeholder="A">
         }
     </div>
 
@@ -26,7 +26,7 @@
     <div id="parte4">
         @for (int i = 0; i <= cont; i++)
         {
-            <input type="number" id="sizeSubnet" name="size1" required placeholder="00" />
+            <input type="number" id="sizeSubnet" required placeholder="00" />
         }
     </div>
 
@@ -34,7 +34,7 @@
     <button id="mas" type="button" @onclick="Contar"> + </button>
     <button id="menos" type="button" @onclick="Eliminar"> - </button>
 
-    <button id="submit" type="submit">Submit</button>
+    <button id="submit">Calcular</button>
 
 </form>
 
