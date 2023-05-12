@@ -25,12 +25,12 @@
         @for (int i = 0; i <= cont; i++)
         {
             <input type="number" id="sizeSubnet" name="size1" required placeholder="00" />
-            <button type="button" id="menos" @onclick="Eliminar">-</button>
         }
     </div>
 
 
     <button id="mas" type="button" @onclick="Contar"> + </button>
+    <button id="menos" type="button" @onclick="Eliminar"> - </button>
 
     <button id="submit" type="submit">Submit</button>
 

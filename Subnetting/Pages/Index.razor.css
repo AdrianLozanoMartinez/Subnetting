@@ -7,28 +7,30 @@
     grid-template-areas: "major major major major"
                          "subnets name1 size1 size"
                          "subnets name2 size2 size"
-                         "mas mas mas mas"
+                         "mas mas menos menos"
                          "submit submit submit submit";
     grid-gap: 3vh;  /*Separación entre elementos*/
     margin-top: 20vh;
     margin-left: 10vh;
 }
 
-#parte1, #parte2, #parte3, #parte4{
+#parte1, #parte2, #parte3, #parte4 {
     border: solid black 1px;
     border-radius: 5px;
     box-shadow: 0 0 30px -10px;
     padding: 2vh;
     margin: 1vh;
+    /*background-image: linear-gradient(to right,#9cff78,#00a93b,#017f21, #005547);*/
 }
 
 #parte1{
     grid-area: major;
-    width: 105vh;
+    width: 50vh;
+    margin-left: 30vh;
 }
 
 #numMajor{
-     width: 70vh;
+     width: 30vh;
 }
 
 #parte2{
@@ -38,33 +40,46 @@
     align-items: center;
 }
 
-#name{
+#name, #size {
+    font-size: 4vh;
+/*    text-shadow: 0 1px 0 hsl(170, 90%, 71%), 
+                 0 4px 0 hsl(174,5%,66%), 
+                 0 0 5px rgba(0,0,0,.05);*/
+}
+
+#name {
     grid-area: name1;
+    margin-left: 30%;
 }
 
 #parte3{
     grid-area: name2;
 }
 
-#size{
+#size {
     grid-area: size1;
+    margin-left: 40%;
 }
 
 #parte4{
     grid-area: size2;
-    width: 40vh;
+    width: 33vh;
 }
 
-#menos{
-    width: 5vh;
-    margin-left: 1vh;
+input{
+    margin-top: 1vh;
+}
+
+#menos {
+    grid-area: menos;
+    width: 10vh;
     background: red;
 }
 
 #mas{
     grid-area: mas;
     width: 10vh;
-    margin-left: 44%;
+    margin-left: 83%;
     background: green;
 }
 
@@ -72,7 +87,7 @@
     grid-area: submit;
     background: #484848;
     width: 20vh;
-    margin-left: 40%;
+    margin-left: 41.5%;
     position: relative; /*Necesario para que no se pinte todo solo el botón*/
 }
 
@@ -91,6 +106,7 @@
     animation: daVueltas 20s linear infinite;
 }
 
+/*Colores que se mueve alrededor del botón o por dentro cuando usamos el hover*/
 @keyframes daVueltas{
     0%{
         background-position: 0 0;
@@ -113,10 +129,11 @@
     color: #FFF;
 }
 
-#submit:hover {
+/*Ampliamos botón*/
+#submit:hover { /*Al pasar por encima*/
     transform: scale(1.5, 1.5);
 }
 
-#mas:active, #menos:active{
+#mas:active, #menos:active{ /*Al pulsar*/
    transform: scale(1.5, 1.5);
 }
