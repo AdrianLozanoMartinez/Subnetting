@@ -14,6 +14,8 @@
 
     <label id="name">Name</label>
     <div id="parte3">
+        @*Se elimina o se añade cuando pulsamos + o - con el contador se pone la cantidad de input
+          que existen, se añade o elimina desde el último*@
         @for (int i = 0; i <= cont; i++)
         {
             <input type="text" id="nameSubnet" name="name1" required placeholder="A">
@@ -28,7 +30,7 @@
         }
     </div>
 
-
+    @*Botones de + y - que llaman al código*@
     <button id="mas" type="button" @onclick="Contar"> + </button>
     <button id="menos" type="button" @onclick="Eliminar"> - </button>
 
@@ -36,17 +38,4 @@
 
 </form>
 
-@code {
-    private bool _isVisible = false;
-    private int cont;
 
-    private void Eliminar()
-    {
-        cont--;
-    }
-
-    private void Contar()
-    {
-        cont++;
-    }
-}

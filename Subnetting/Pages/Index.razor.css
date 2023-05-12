@@ -88,9 +88,10 @@ input{
     background: #484848;
     width: 20vh;
     margin-left: 41.5%;
-    position: relative; /*Necesario para que no se pinte todo solo el botón*/
+    position: relative; /*Necesario para que no se pinte todo, solo el botón*/
 }
 
+/*Efecto de colores en movimiento*/
 #submit::before{
     content: "";
     position: absolute;
