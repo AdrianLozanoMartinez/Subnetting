@@ -132,7 +132,7 @@ input{
 
 /*Ampliamos botón*/
 #submit:hover { /*Al pasar por encima*/
-    transform: scale(1.5, 1.5);
+    transform: scale(1.1, 1.1);
 }
 
 #mas:active, #menos:active{ /*Al pulsar*/
