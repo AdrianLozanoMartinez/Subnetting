@@ -33,12 +33,12 @@ namespace Subnetting.Pages
         private void CalculateSubnets()
         {
             bool valida = Regex.IsMatch(direccionIP, @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,2}\b");
-            /*bool valida = Regex.IsMatch(ip, @"\b\d+\.\d+\.\d+\.\d+/\d+\b");*/ //Comprobamos que el formato de la IP es correcta 'X.X.X.X/X'
+            //Comprobamos que el formato de la IP es correcta 'X.X.X.X/X'
 
             if (valida)
             {
                 direccionIP = direccionIP.Replace('/', '.'); //Cambiamos la barra del final de la IP por un '.' para
-                                           //poder hacer el .Split() sin problemas
+                                                             //poder hacer el .Split() sin problemas
 
                 string[] ipNumsString = direccionIP.Split('.'); //Metemos en un array cada valor de la ip 
 
@@ -94,17 +94,11 @@ namespace Subnetting.Pages
                             }
                         }
                         else
-                        {
                             error = "El número de subredes supera el máximo de hosts por subred";
-                        }
+
                     }
                     else
-                    {
                         error = "El número de subredes supera el máximo de subredes que puede tener está dirección de IP";
-                    }
-
-
-
                 }
                 else
                     error = "Algunos de los valores de la IP (ya sean los de la dirección IP o el de la máscara) " +
@@ -116,12 +110,9 @@ namespace Subnetting.Pages
                 error = "El formato de la IP introducida no es correcto.El formato deberia ser: XXX.XXX.XXX.XXX/XX";
             //Notificamos al usuario cuando el formato de la ip no es correcto
         }
-        
 
 
-
-
-
+        // -------------------- MÉTODOS REUTILIZABLES --------------------
 
         //MÉTODO QUE COMPRUEBA QUE EL NUMERO ESTÁ ENTRE 1 Y 255
         static public bool Range(int num)
@@ -135,5 +126,4 @@ namespace Subnetting.Pages
         //METODO QUE PASA DE BINARIO A DECIMAL
         public static int BinarioADecimal(string numBinario) => numBinario.Reverse().Select((c, i) => c == '1' ? (int)Math.Pow(2, i) : 0).Sum();
     }
-
 }
