@@ -8,11 +8,17 @@ namespace Subnetting.Pages
         private string direccionIP;
         private int numSubnets;
         private List<Subnet> userSubnets = new List<Subnet>();
+        private List<Subnet> resultSubnets = new List<Subnet>();
 
         public class Subnet
         {
             public string Name { get; set; }
             public int Size { get; set; }
+            public int HostMax { get; set; }
+            public string IPAddress { get; set; }
+            public string Mask { get; set; }
+            public string AsignableRange { get; set; }
+            private string Broadcast { get; set; }
         }
 
         private void CreateSubnets()
@@ -43,11 +49,54 @@ namespace Subnetting.Pages
 
                 if (ipNumsInt[0] > 0 && ipNumsInt[0] < 256 && Range(ipNumsInt[1]) && Range(ipNumsInt[2]) && Range(ipNumsInt[3]) && ipNumsInt[4] < 33 && ipNumsInt[4] > 0)
                 {
-                    int x = 32 - ipNumsInt[4];
-                    double y = Math.Pow(2, x) / 2;
+                    int bitsParaHost = 32 - ipNumsInt[4];
+                    double y = Math.Pow(2, bitsParaHost) / 2;
                     if (userSubnets.Count <= y)
                     {
+                        Subnet firstSize = userSubnets.First();
+                        int size = firstSize.Size;
 
+                        string ipBinario = "";
+
+                        for(int i = 0; i < ipNumsInt.Length - 1;i++)
+                        {
+                            ipBinario += DecimalABinario(ipNumsInt[i]);
+                        }
+
+                        string bitsRestantes = ipBinario.Substring(ipBinario.Length - bitsParaHost);
+
+                        double j = Math.Sqrt(userSubnets.Count);
+                        int bitsNecesarios = (int)Math.Ceiling(j);
+
+                        string numeroHosts = bitsRestantes.Substring(bitsRestantes.Length - (bitsRestantes.Length - bitsNecesarios));
+
+                        numeroHosts = numeroHosts.Replace('0', '1');
+                        int hostsMaximosSubred = BinarioADecimal(numeroHosts);
+
+                        if(size <= hostsMaximosSubred)
+                        {
+                            foreach(Subnet userSubnet in userSubnets)
+                            {
+                                Subnet subnet = new Subnet();
+
+                                subnet.Name = userSubnet.Name;
+                                subnet.Size = userSubnet.Size;
+                                subnet.HostMax = hostsMaximosSubred;
+                                subnet.Mask = "/" + ipNumsString[4];
+
+
+                                //Falta direccion IP
+                                //Falta rango IPs
+                                //Falta direccion Broadcast
+
+
+                                resultSubnets.Add(subnet);
+                            }
+                        }
+                        else
+                        {
+                            error = "El número de subredes supera el máximo de hosts por subred";
+                        }
                     }
                     else
                     {
@@ -68,16 +117,6 @@ namespace Subnetting.Pages
             //Notificamos al usuario cuando el formato de la ip no es correcto
         }
         
-
-
-
-
-
-
-
-
-
-
 
 
 
