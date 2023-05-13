@@ -20,27 +20,24 @@
         </div>
 
         <label id="name">Name</label>
-            <div id="parte3">
+        <div id="parte3">
             @foreach (var subnet in userSubnets)
             {
                 @*Se elimina o se añade cuando pulsamos + o - con el contador se pone la cantidad de input
                     que existen, se añade o elimina desde el último*@
                 <input type="text" id="nameSubnet" required placeholder="A" @bind-value="@subnet.Name" />
             }
-            </div>
+        </div>
 
-            <label id="size">Size</label>
-            <div id="parte4">
+        <label id="size">Size</label>
+        <div id="parte4">
             @foreach (var subnet in userSubnets)
             {
                 <input type="number" id="sizeSubnet" required placeholder="00" @bind-value="@subnet.Size" />
             }
-            </div>
+        </div>
 
         <button id="submit" @onclick="@CalculateSubnets">Calcular</button>
 
     </div>
 }
-
-
-
