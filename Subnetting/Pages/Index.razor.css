@@ -7,7 +7,7 @@
     display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
     grid-template-columns: repeat(4, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
     /*Estructuramos de cómo se verán cada parte, dónde irá colocado*/
-    grid-template-areas: "cantidadRedes cantidadRedes major major"
+    grid-template-areas: "major major cantidadRedes cantidadRedes"
         "subnets name1 size1 size"
         "subnets name2 size2 size"
         "submit submit submit submit";
@@ -45,7 +45,7 @@
 #parte1 {
     grid-area: major;
     width: 50vh;
-    margin-left: -17vh;
+    margin-left: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;

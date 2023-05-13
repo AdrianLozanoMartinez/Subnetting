@@ -2,18 +2,20 @@
 
 <PageTitle>Subnetting</PageTitle>
 <div id="container">
+
+    <div id="parte1">
+        <label for="numIp" id="ip">Dirección IP: </label>
+        <input type="text" id="numIp" required placeholder="xxx.xxx.xxx.xxx/xx" @bind-value="direccionIP">
+    </div>
+
     <div id="cantidadRedes">
         <label>Numero de subredes:</label>
         <input type="number" @bind-value="@numSubnets" />
         <button @onclick="@CreateSubnets" id="change">Change</button>
     </div>
+
     @if (userSubnets.Count > 0)
     {
-        <div id="parte1">
-            <label for="numIp" id="ip">Dirección IP: </label>
-            <input type="text" id="numIp" required placeholder="xxx.xxx.xxx.xxx/xx" @bind-value="direccionIP">
-        </div>
-
         <div id="parte2">
             <label id="subnets">Subnets</label>
         </div>
