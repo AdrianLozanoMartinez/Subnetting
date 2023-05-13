@@ -2,19 +2,17 @@
     /*GRID*/
     display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
     grid-template-columns: repeat(4, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
-    grid-template-columns: repeat(5, 1fr); /*Definimos el grosor de las filas, ponemos para que sean 6 filas con el mismo grosor(1fr)*/
     /*Estructuramos de cómo se verán cada parte, dónde irá colocado*/
-    grid-template-areas: "major major major major"
+    grid-template-areas: "cantidadRedes cantidadRedes major major"
         "subnets name1 size1 size"
         "subnets name2 size2 size"
-        "mas mas menos menos"
         "submit submit submit submit";
     grid-gap: 3vh; /*Separación entre elementos*/
     margin-top: 20vh;
     margin-left: 10vh;
 }
 
-#parte1, #parte2, #parte3, #parte4 {
+#parte1, #parte2, #parte3, #parte4, #cantidadRedes {
     border: solid black 1px;
     border-radius: 5px;
     box-shadow: 0 0 30px -10px;
@@ -23,14 +21,36 @@
     /*background-image: linear-gradient(to right,#9cff78,#00a93b,#017f21, #005547);*/
 }
 
-#parte1{
+#cantidadRedes {
+    grid-area: cantidadRedes;
+    width: 50vh;
+}
+
+#change {
+    width: 10vh;
+    background: green;
+    border-radius: 5vh;
+    color: white;
+    font-weight: bold;
+    margin-left: 2vh;
+}
+
+#change:active { /*Al pulsar*/
+    transform: scale(1.5, 1.5);
+}
+
+#parte1 {
     grid-area: major;
     width: 50vh;
-    margin-left: 30vh;
+    margin-left: -12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #numIp{
      width: 30vh;
+     margin-left: 1vh;
 }
 
 #parte2{
@@ -116,6 +136,3 @@ input{
     transform: scale(1.1, 1.1);
 }
 
-#mas:active, #menos:active{ /*Al pulsar*/
-   transform: scale(1.5, 1.5);
-}
