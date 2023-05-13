@@ -1,41 +1,46 @@
 ﻿@page "/"
 
 <PageTitle>Subnetting</PageTitle>
+<div>
+    <label>Numero de subredes:</label>
+    <input type="number" @bind-value="@numSubnets" />
+    <button @onclick="@CreateSubnets">Change</button>
+</div>
+@if (userSubnets.Count > 0)
+{
+    <div id="container">
 
-<form>
-    <div id="parte1">
-        <label for="numIp" id="ip">Dirección IP: </label>
-        <input type="text" id="numIp" required placeholder="xxx.xxx.xxx.xxx/xx">
+        <div id="parte1">
+            <label for="numIp" id="ip">Dirección IP: </label>
+            <input type="text" id="numIp" required placeholder="xxx.xxx.xxx.xxx/xx" @bind-value="direccionIP">
+        </div>
+
+        <div id="parte2">
+            <label id="subnets">Subnets</label>
+        </div>
+
+        <label id="name">Name</label>
+            <div id="parte3">
+            @foreach (var subnet in userSubnets)
+            {
+                @*Se elimina o se añade cuando pulsamos + o - con el contador se pone la cantidad de input
+                    que existen, se añade o elimina desde el último*@
+                <input type="text" id="nameSubnet" required placeholder="A" @bind-value="@subnet.Name" />
+            }
+            </div>
+
+            <label id="size">Size</label>
+            <div id="parte4">
+            @foreach (var subnet in userSubnets)
+            {
+                <input type="number" id="sizeSubnet" required placeholder="00" @bind-value="@subnet.Size" />
+            }
+            </div>
+
+        <button id="submit" @onclick="@CalculateSubnets">Calcular</button>
+
     </div>
+}
 
-    <div id="parte2">
-        <label id="subnets">Subnets</label>
-    </div>
-
-    <label id="name">Name</label>
-    <div id="parte3">
-        @*Se elimina o se añade cuando pulsamos + o - con el contador se pone la cantidad de input
-          que existen, se añade o elimina desde el último*@
-        @for (int i = 0; i < cont; i++)
-        {
-            <input type="text" id="nameSubnet" required placeholder="A">
-        }
-    </div>
-
-    <label id="size">Size</label>
-    <div id="parte4">
-        @for (int i = 0; i < cont; i++)
-        {
-            <input type="number" id="sizeSubnet" required placeholder="00" />
-        }
-    </div>
-
-    @*Botones de + y - que llaman al código*@
-    <button id="mas" type="button" @onclick="Contar"> + </button>
-    <button id="menos" type="button" @onclick="Eliminar"> - </button>
-
-    <button id="submit">Calcular</button>
-
-</form>
 
 

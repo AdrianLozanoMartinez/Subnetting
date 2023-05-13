@@ -2,19 +2,27 @@ namespace Subnetting.Pages
 {
     public partial class Index
     {
-        private int cont = 1;
-        /*Eliminamos input al restar contador el for recorre uno menos y se ve uno menos*/
-        private void Eliminar()
+        private string direccionIP;
+        private int numSubnets;
+        private List<Subnet> userSubnets = new List<Subnet>();
+
+        private void CreateSubnets()
         {
-            if(cont > 1)
+            userSubnets = new List<Subnet>();
+            for (int i = 0; i < numSubnets; i++)
             {
-                cont--;
+                userSubnets.Add(new Subnet());
             }
         }
-        /*Añadimos input al sumar contador el for recorre uno más y se ve uno más*/
-        private void Contar()
+
+        private void CalculateSubnets()
         {
-            cont++;
+            //AQUI VAN LOS CALCULOS DE LAS SUBREDES
+        }
+        public class Subnet
+        {
+            public string Name { get; set; }
+            public int Size { get; set; }
         }
     }
 }

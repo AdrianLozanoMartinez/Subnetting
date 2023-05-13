@@ -1,15 +1,15 @@
-﻿form{
+﻿#container {
     /*GRID*/
     display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
     grid-template-columns: repeat(4, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
     grid-template-columns: repeat(5, 1fr); /*Definimos el grosor de las filas, ponemos para que sean 6 filas con el mismo grosor(1fr)*/
     /*Estructuramos de cómo se verán cada parte, dónde irá colocado*/
     grid-template-areas: "major major major major"
-                         "subnets name1 size1 size"
-                         "subnets name2 size2 size"
-                         "mas mas menos menos"
-                         "submit submit submit submit";
-    grid-gap: 3vh;  /*Separación entre elementos*/
+        "subnets name1 size1 size"
+        "subnets name2 size2 size"
+        "mas mas menos menos"
+        "submit submit submit submit";
+    grid-gap: 3vh; /*Separación entre elementos*/
     margin-top: 20vh;
     margin-left: 10vh;
 }
@@ -42,9 +42,6 @@
 
 #name, #size {
     font-size: 4vh;
-/*    text-shadow: 0 1px 0 hsl(170, 90%, 71%), 
-                 0 4px 0 hsl(174,5%,66%), 
-                 0 0 5px rgba(0,0,0,.05);*/
 }
 
 #name {
@@ -70,25 +67,19 @@ input{
     margin-top: 1vh;
 }
 
-#menos {
-    grid-area: menos;
-    width: 10vh;
-    background: red;
-}
-
-#mas{
-    grid-area: mas;
-    width: 10vh;
-    margin-left: 83%;
-    background: green;
-}
-
-#submit{
+#submit {
     grid-area: submit;
     background: #484848;
     width: 20vh;
     margin-left: 41.5%;
     position: relative; /*Necesario para que no se pinte todo, solo el botón*/
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px;
+    padding: 16px, 32px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFF;
 }
 
 /*Efecto de colores en movimiento*/
@@ -118,16 +109,6 @@ input{
     100%{
         background-position: 0 0;
     }
-}
-
-#menos, #mas, #submit{
-    border-radius: 5px;
-    border: none;
-    box-shadow: 0 0 5px;
-    padding: 16px, 32px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #FFF;
 }
 
 /*Ampliamos botón*/
