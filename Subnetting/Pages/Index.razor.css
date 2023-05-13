@@ -1,4 +1,8 @@
-﻿#container {
+﻿*{
+    font-weight: bold;
+}
+
+#container {
     /*GRID*/
     display: grid; /*Para hacerlo responsive, dividimos por filas y columnas*/
     grid-template-columns: repeat(4, 1fr); /*Definimos el grosor de las columnas, ponemos para que sean 4 columnas con el mismo grosor(1fr)*/
@@ -31,7 +35,6 @@
     background: green;
     border-radius: 5vh;
     color: white;
-    font-weight: bold;
     margin-left: 2vh;
 }
 
@@ -62,7 +65,6 @@
 
 #name, #size, #subnets {
     font-size: 4vh;
-    font-weight: bold;
 }
 
 #name {
@@ -98,7 +100,6 @@ input{
     border: none;
     box-shadow: 0 0 5px;
     padding: 16px, 32px;
-    font-weight: bold;
     font-size: 20px;
     color: #FFF;
 }
