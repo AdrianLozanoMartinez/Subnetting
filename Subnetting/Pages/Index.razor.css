@@ -28,6 +28,7 @@
 #cantidadRedes {
     grid-area: cantidadRedes;
     width: 50vh;
+    margin-left: -16vh;
 }
 
 #change {
