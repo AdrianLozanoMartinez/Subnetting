@@ -9,7 +9,7 @@
         "submit submit submit submit";
     grid-gap: 3vh; /*Separación entre elementos*/
     margin-top: 20vh;
-    margin-left: 10vh;
+    margin-left: 30vh;
 }
 
 #parte1, #parte2, #parte3, #parte4, #cantidadRedes {
@@ -42,7 +42,7 @@
 #parte1 {
     grid-area: major;
     width: 50vh;
-    margin-left: -12vh;
+    margin-left: -17vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,8 +60,9 @@
     align-items: center;
 }
 
-#name, #size {
+#name, #size, #subnets {
     font-size: 4vh;
+    font-weight: bold;
 }
 
 #name {
