@@ -40,7 +40,7 @@
 
     }
 </div>
-@if (string.IsNullOrEmpty(error))
+@if (string.IsNullOrEmpty(error) && resultSubnets.Count > 0)
 {
     <h4>Result:</h4>
     <table>
