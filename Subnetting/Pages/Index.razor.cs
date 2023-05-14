@@ -46,7 +46,7 @@ namespace Subnetting.Pages
 
                 int[] ipNumsInt = new int[ipNumsString.Length]; //Ahora creamos un array de tipo 'int' y metemos todos los valores de
                                                                 //'ipNumsString' pero cambiados a 'int' para poder trabajar mejor con ellos
-                
+
                 for (int i = 0; i < ipNumsInt.Length; i++) //Metemos los datos de 'ipNumsString' a 'ipNumsInt' 
                     ipNumsInt[i] = int.Parse(ipNumsString[i]);
 
@@ -56,7 +56,7 @@ namespace Subnetting.Pages
                 {
                     //Aquí calculamos los bits que son para host y posteriormente el numero de 
                     //subredes máximo que puede tener la dirección ip dada por el usuario
-                    int bitsParaHost = 32 - ipNumsInt[4]; 
+                    int bitsParaHost = 32 - ipNumsInt[4];
                     double y = Math.Pow(2, bitsParaHost) / 2;
 
                     //Aqui comprobamos que el numero de subredes pedidas por el usuario sea menor que el numero maximo que puede tener
@@ -65,7 +65,7 @@ namespace Subnetting.Pages
                         //Metemos en un string la dirección IP completa en formato binario
                         string ipBinario = "";
 
-                        for(int i = 0; i < ipNumsInt.Length - 1;i++)
+                        for (int i = 0; i < ipNumsInt.Length - 1; i++)
                         {
                             ipBinario += DecimalABinario(ipNumsInt[i]).PadLeft(8, '0');
                         }
@@ -79,7 +79,7 @@ namespace Subnetting.Pages
 
                         //Aquí nos quedamos con los 'x' ultimos bits de 'bitsRestantes' donde 'x' es el numero de bit necesarios para la
                         //direccion de la subred menos la longuitud de 'bitsRestantes' 
-                        string numeroHosts = bitsRestantes.Substring(bitsRestantes.Length - (bitsRestantes.Length - bitsNecesarios)).Replace('1','0');
+                        string numeroHosts = bitsRestantes.Substring(bitsRestantes.Length - (bitsRestantes.Length - bitsNecesarios)).Replace('1', '0');
 
                         string numeroHostsConUnos = numeroHosts.Replace('0', '1');
                         int hostsMaximosSubred = BinarioADecimal(numeroHostsConUnos) - 1;
@@ -88,7 +88,7 @@ namespace Subnetting.Pages
 
                         foreach (Subnet userSubnet in userSubnets)
                         {
-                            if(userSubnet.Size > hostsMaximosSubred && noSupera)
+                            if (userSubnet.Size > hostsMaximosSubred && noSupera)
                                 noSupera = false;
                         }
 
@@ -103,7 +103,7 @@ namespace Subnetting.Pages
 
                         if (noSupera)
                         {
-                            foreach(Subnet userSubnet in userSubnets)
+                            foreach (Subnet userSubnet in userSubnets)
                             {
                                 Subnet subnet = new Subnet();
 
@@ -130,7 +130,7 @@ namespace Subnetting.Pages
                                 string principioRango = IpBinarioADecimal(principioRangoBinario);
                                 string finalRango = IpBinarioADecimal(finalRangoBinario);
 
-                                
+
                                 subnet.IPAddress = direccionIp;
                                 subnet.Broadcast = direccionBroadCast;
                                 subnet.AsignableRange = principioRango + " - " + finalRango;
