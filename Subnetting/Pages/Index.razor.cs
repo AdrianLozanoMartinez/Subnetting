@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 
 namespace Subnetting.Pages
@@ -19,7 +20,7 @@ namespace Subnetting.Pages
             public string IPAddress { get; set; } //Dirección red de la subred
             public string Mask { get; set; } //Máscara de la subred
             public string AsignableRange { get; set; } //Rango de hosts asiganble de la subred
-            private string Broadcast { get; set; } //Dirección broadcast de la subred
+            public string Broadcast { get; set; } //Dirección broadcast de la subred
         }
 
         private void CreateSubnets() //Método de crea y almacena los datos de las subredes dadas por el usuario
@@ -78,7 +79,7 @@ namespace Subnetting.Pages
 
                         //Aquí nos quedamos con los 'x' ultimos bits de 'bitsRestantes' donde 'x' es el numero de bit necesarios para la
                         //direccion de la subred menos la longuitud de 'bitsRestantes' 
-                        string numeroHosts = bitsRestantes.Substring(bitsRestantes.Length - (bitsRestantes.Length - bitsNecesarios));
+                        string numeroHosts = bitsRestantes.Substring(bitsRestantes.Length - (bitsRestantes.Length - bitsNecesarios)).Replace('1','0');
 
                         string numeroHostsConUnos = numeroHosts.Replace('0', '1');
                         int hostsMaximosSubred = BinarioADecimal(numeroHostsConUnos) - 1;
@@ -111,14 +112,28 @@ namespace Subnetting.Pages
                                 subnet.HostMax = hostsMaximosSubred;
                                 subnet.Mask = "/" + (ipNumsInt[4] + bitsNecesarios);
 
+                                string unos = new string('1', ipNumsInt[4]);
+                                string unosConCeros = unos.PadRight(32, '0');
+                                string ipRemplazar1 = AndLogico(ipBinario, unosConCeros);
 
-                                string ipRemplazar = ipBinario.Substring(0, ipBinario.Length - bitsRestantes.Length) + bitsRedSubred[count] + numeroHosts;
+                                string ipRemplazar2 = ipRemplazar1.Substring(0, ipBinario.Length - bitsRestantes.Length) + bitsRedSubred[count] + numeroHosts;
 
-                                int parteAzul = BinarioADecimal(ipRemplazar.Substring(ipBinario.Length - bitsRestantes.Length, bitsRestantes.Length));
+                                int parteAzul = BinarioADecimal(ipRemplazar2.Substring(ipBinario.Length - bitsRestantes.Length, bitsRestantes.Length));
 
-                                //Falta direccion IP
-                                //Falta rango IPs
-                                //Falta direccion Broadcast
+                                string direccionIpBinario = ipRemplazar2.Substring(0, ipBinario.Length - (bitsRestantes.Length - bitsNecesarios)) + numeroHosts;
+                                string direccionBroadCastBinario = ipRemplazar2.Substring(0, ipBinario.Length - (bitsRestantes.Length - bitsNecesarios)) + numeroHostsConUnos;
+                                string principioRangoBinario = ipRemplazar2.Substring(0, ipBinario.Length - (bitsRestantes.Length - bitsNecesarios)) + numeroHosts.Substring(0, numeroHosts.Length - 1) + "1";
+                                string finalRangoBinario = ipRemplazar2.Substring(0, ipBinario.Length - (bitsRestantes.Length - bitsNecesarios)) + numeroHostsConUnos.Substring(0, numeroHostsConUnos.Length - 1) + "0";
+
+                                string direccionIp = IpBinarioADecimal(direccionIpBinario);
+                                string direccionBroadCast = IpBinarioADecimal(direccionBroadCastBinario);
+                                string principioRango = IpBinarioADecimal(principioRangoBinario);
+                                string finalRango = IpBinarioADecimal(finalRangoBinario);
+
+                                
+                                subnet.IPAddress = direccionIp;
+                                subnet.Broadcast = direccionBroadCast;
+                                subnet.AsignableRange = principioRango + " - " + finalRango;
 
 
                                 resultSubnets.Add(subnet);
@@ -149,7 +164,7 @@ namespace Subnetting.Pages
         // -------------------- MÉTODOS REUTILIZABLES --------------------
 
         //MÉTODO QUE COMPRUEBA QUE EL NUMERO ESTÁ ENTRE 1 Y 255
-        static public bool Range(int num)
+        public static bool Range(int num)
         {
             return num >= 0 && num < 256;
         }
@@ -159,5 +174,37 @@ namespace Subnetting.Pages
 
         //METODO QUE PASA DE BINARIO A DECIMAL
         public static int BinarioADecimal(string numBinario) => numBinario.Reverse().Select((c, i) => c == '1' ? (int)Math.Pow(2, i) : 0).Sum();
+
+        public static string IpBinarioADecimal(string ipBinario)
+        {
+            string result = "";
+
+            result += BinarioADecimal(ipBinario.Substring(0, 8)) + ".";
+            result += BinarioADecimal(ipBinario.Substring(8, 8)) + ".";
+            result += BinarioADecimal(ipBinario.Substring(16, 8)) + ".";
+            result += BinarioADecimal(ipBinario.Substring(24, 8));
+
+
+            return result;
+        }
+
+        public static string AndLogico(string cadena1, string cadena2)
+        {
+            string resultado = "";
+
+            for (int i = 0; i < cadena1.Length; i++)
+            {
+                if (cadena1[i] == '1' && cadena2[i] == '1')
+                {
+                    resultado += "1";
+                }
+                else
+                {
+                    resultado += "0";
+                }
+            }
+
+            return resultado;
+        }
     }
 }
