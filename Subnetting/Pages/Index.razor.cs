@@ -100,7 +100,7 @@ namespace Subnetting.Pages
                                 subnet.Name = userSubnet.Name;
                                 subnet.Size = userSubnet.Size;
                                 subnet.HostMax = hostsMaximosSubred;
-                                subnet.Mask = "/" + ipNumsString[4];
+                                subnet.Mask = "/" + (ipNumsInt[4] + bitsNecesarios);
 
 
                                 //Falta direccion IP
