@@ -40,3 +40,38 @@
 
     }
 </div>
+@if (string.IsNullOrEmpty(error))
+{
+    <h4>Result:</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tamaño</th>
+                <th>Tamaño máximo</th>
+                <th>Dirección Red</th>
+                <th>Máscara red</th>
+                <th>Rango Asignables</th>
+                <th>Dirección Broadcast</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subnet in resultSubnets)
+            {
+                <tr>
+                    <td>@subnet.Name</td>
+                    <td>@subnet.Size</td>
+                    <td>@subnet.HostMax</td>
+                    <td>@subnet.IPAddress</td>
+                    <td>@subnet.Mask</td>
+                    <td>@subnet.AsignableRange</td>
+                    <td>@subnet.Broadcast</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>@error</p>
+}
