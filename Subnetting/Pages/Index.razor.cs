@@ -66,11 +66,11 @@ namespace Subnetting.Pages
 
                         for(int i = 0; i < ipNumsInt.Length - 1;i++)
                         {
-                            ipBinario += DecimalABinario(ipNumsInt[i]);
+                            ipBinario += DecimalABinario(ipNumsInt[i]).PadLeft(8, '0');
                         }
 
                         //Del string creado anteriormente, nos quedamos con los 'x' últimos bits, donde 'x' es el número de bits para hosts
-                        string bitsRestantes = ipBinario.Substring(ipBinario.Length - bitsParaHost);
+                        string bitsRestantes = ipBinario.Substring(ipBinario.Length - bitsParaHost, bitsParaHost);
 
                         //Aquí calculamos el número de bits que tenemos que utilizar dependiendo del número de subredes que tengamos
                         double j = Math.Sqrt(userSubnets.Count);
@@ -80,8 +80,8 @@ namespace Subnetting.Pages
                         //direccion de la subred menos la longuitud de 'bitsRestantes' 
                         string numeroHosts = bitsRestantes.Substring(bitsRestantes.Length - (bitsRestantes.Length - bitsNecesarios));
 
-                        numeroHosts = numeroHosts.Replace('0', '1');
-                        int hostsMaximosSubred = BinarioADecimal(numeroHosts) - 1;
+                        string numeroHostsConUnos = numeroHosts.Replace('0', '1');
+                        int hostsMaximosSubred = BinarioADecimal(numeroHostsConUnos) - 1;
 
                         bool noSupera = true;
 
@@ -90,6 +90,15 @@ namespace Subnetting.Pages
                             if(userSubnet.Size > hostsMaximosSubred && noSupera)
                                 noSupera = false;
                         }
+
+                        string[] bitsRedSubred = new string[userSubnets.Count];
+                        for (int i = 0; i < bitsRedSubred.Length; i++)
+                        {
+                            bitsRedSubred[i] = DecimalABinario(i).PadLeft(bitsNecesarios, '0');
+                        }
+
+                        int salto = hostsMaximosSubred + 2;
+                        int count = 0;
 
                         if (noSupera)
                         {
@@ -103,12 +112,17 @@ namespace Subnetting.Pages
                                 subnet.Mask = "/" + (ipNumsInt[4] + bitsNecesarios);
 
 
+                                string ipRemplazar = ipBinario.Substring(0, ipBinario.Length - bitsRestantes.Length) + bitsRedSubred[count] + numeroHosts;
+
+                                int parteAzul = BinarioADecimal(ipRemplazar.Substring(ipBinario.Length - bitsRestantes.Length, bitsRestantes.Length));
+
                                 //Falta direccion IP
                                 //Falta rango IPs
                                 //Falta direccion Broadcast
 
 
                                 resultSubnets.Add(subnet);
+                                count++;
                             }
                         }
                         else
