@@ -145,8 +145,8 @@ input{
 }
 
 #boxTittle {
-    background-image: linear-gradient(to right,#175500, #017f05, #00a95a, #e1e8ec);
-    width: 100vh;
+    background-image: linear-gradient(to right,black, #3e4132, #535b61, #e1e8ec);
+    width: 138vh;
     margin-left: 2vh;
     padding: 1vh;
     padding-left: 3vh;
@@ -158,7 +158,7 @@ input{
 
 table, tr, td, th {
     border: solid black 2px;
-    margin: 2vh;
+    margin-left: 2vh;
     padding: 2vh;
     color: white;
     text-align: center;
