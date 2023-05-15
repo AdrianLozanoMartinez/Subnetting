@@ -11,7 +11,7 @@
         "subnets name1 size1 size"
         "subnets name2 size2 size"
         "submit submit submit submit"
-        "container2 container2 container2 container2";
+        "container2 container2 container2 container2"; 
     grid-gap: 3vh; /*Separación entre elementos*/
     margin-top: 5vh;
     margin-left: 30vh;
@@ -20,10 +20,9 @@
 #parte1, #parte2, #parte3, #parte4, #cantidadRedes {
     border: solid black 1px;
     border-radius: 5px;
-    box-shadow: 0 0 30px -10px;
+    box-shadow: 0 0 30px -10px; /*Efecto sombra a todos los cuadros*/
     padding: 2vh;
     margin: 1vh;
-    /*background-image: linear-gradient(to right,#9cff78,#00a93b,#017f21, #005547);*/
 }
 
 #cantidadRedes {
@@ -40,17 +39,21 @@
     margin-left: 2vh;
 }
 
-#change:active { /*Al pulsar*/
+#change:active { /*Se amplie botón al pulsarse, para hacer efecto de botón*/
     transform: scale(1.5, 1.5);
+}
+
+#parte1, #parte2 {
+    /*Centrar contenido de la parte 1*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #parte1 {
     grid-area: major;
     width: 50vh;
     margin-left: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #numIp{
@@ -60,9 +63,6 @@
 
 #parte2{
     grid-area: subnets;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #name, #size, #subnets {
@@ -99,14 +99,11 @@ input{
     margin-left: 32%;
     position: relative; /*Necesario para que no se pinte todo, solo el botón*/
     border-radius: 5px;
-    border: none;
-    box-shadow: 0 0 5px;
-    padding: 16px, 32px;
-    font-size: 20px;
+    font-size: 2vh;
     color: #FFF;
 }
 
-/*Efecto de colores en movimiento*/
+/*Efecto de colores en movimiento, alrededor del botón o por dentro cuando usamos el hover*/
 #submit::before{
     content: "";
     position: absolute;
@@ -122,7 +119,7 @@ input{
     animation: daVueltas 20s linear infinite;
 }
 
-/*Colores que se mueve alrededor del botón o por dentro cuando usamos el hover*/
+/*Movimiento desde posición 0 hasta 400% por el eje x hasta de nuevo al inicio*/
 @keyframes daVueltas{
     0%{
         background-position: 0 0;
@@ -157,10 +154,9 @@ input{
 }
 
 #boxTittle {
-    background-image: linear-gradient(to right,black, #3e4132, #535b61, #535b61);
+    background-image: linear-gradient(to right,black, #3e4132, #535b61, #535b61); /*Efecto gradiente*/
     width: 30vh;
     margin-left: 2vh;
-    
     border-radius: 35px 35px 0px 0px;
     border: 2px solid #175500;
 }
@@ -177,15 +173,15 @@ th {
     background: rgb(20, 100, 68);
 }
 
-tr:nth-child(even) {
+tr:nth-child(even) { /*Par*/
     background: rgb(11, 139, 99);
 }
 
-tr:nth-child(odd) {
+tr:nth-child(odd) { /*Impar*/
     background: rgb(66, 174, 140);
 }
 
-td:nth-child(6) {
+td:nth-child(6) { /*Celda de la columna 6, ampliarla por dentro porque se queda estrecho*/
     padding-left: 4vh;
     padding-right: 4vh;
 }
@@ -194,7 +190,7 @@ tr:hover {
     background: rgb(73, 146, 0);
 }
 
-tr:hover td:hover {
+tr:hover td:hover { 
     transform: scale(1.2, 1.2);
 }
 
