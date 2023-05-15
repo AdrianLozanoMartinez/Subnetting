@@ -97,7 +97,6 @@ input{
     background: #484848;
     width: 20vh;
     margin-left: 35%;
-    margin-right: 35%;
     position: relative; /*Necesario para que no se pinte todo, solo el botón*/
     border-radius: 5px;
     border: none;
