@@ -43,38 +43,38 @@
     <div id="container2">
         @if (string.IsNullOrEmpty(error) && resultSubnets.Count > 0)
         {
-                <div id="boxTittle">Result</div>
-                <table>
-                    <thead>
+            <div id="boxTittle">Result</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tamaño</th>
+                        <th>Tamaño máximo</th>
+                        <th>Dirección Red</th>
+                        <th>Máscara red</th>
+                        <th>Rango Asignables</th>
+                        <th>Dirección Broadcast</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var subnet in resultSubnets)
+                    {
                         <tr>
-                            <th>Nombre</th>
-                            <th>Tamaño</th>
-                            <th>Tamaño máximo</th>
-                            <th>Dirección Red</th>
-                            <th>Máscara red</th>
-                            <th>Rango Asignables</th>
-                            <th>Dirección Broadcast</th>
+                            <td>@subnet.Name</td>
+                            <td>@subnet.Size</td>
+                            <td>@subnet.HostMax</td>
+                            <td>@subnet.IPAddress</td>
+                            <td>@subnet.Mask</td>
+                            <td>@subnet.AsignableRange</td>
+                            <td>@subnet.Broadcast</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var subnet in resultSubnets)
-                        {
-                            <tr>
-                                <td>@subnet.Name</td>
-                                <td>@subnet.Size</td>
-                                <td>@subnet.HostMax</td>
-                                <td>@subnet.IPAddress</td>
-                                <td>@subnet.Mask</td>
-                                <td>@subnet.AsignableRange</td>
-                                <td>@subnet.Broadcast</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                    }
+                </tbody>
+            </table>
         }
-        else
+        else if (!string.IsNullOrEmpty(error))
         {
-            <p>@error</p>
+            <div id="error">@error</div>
         }
     </div>
 
