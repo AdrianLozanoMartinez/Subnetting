@@ -25,9 +25,9 @@ namespace Subnetting.Pages
 
         private void CreateSubnets() 
         {
-            userSubnets = new List<Subnet>();
-            for (int i = 0; i < numSubnets; i++)
-                userSubnets.Add(new Subnet());
+            //userSubnets = new List<Subnet>();
+            for (int i = userSubnets.Count; i < numSubnets; i++)
+                userSubnets.Add(new Subnet{ Name = ((char)('A' + i)).ToString(), Size = 0 + i });
         }
 
         private void CalculateSubnets() //Método con toda la lógica de la calculadora
