@@ -25,15 +25,17 @@ namespace Subnetting.Pages
 
         private void CreateSubnets() 
         {
+            /*Si el número que mete el usuario es mayor que el que hay se amplia los input*/
             if(userSubnets.Count < numSubnets)
             { 
-                for (int i = userSubnets.Count; i < numSubnets; i++)
-                    userSubnets.Add(new Subnet{ Name = ((char)('A' + i)).ToString() });
+                for (int i = userSubnets.Count; i < numSubnets; i++) /*Desde el total hasta el número elegido*/
+                    userSubnets.Add(new Subnet{ Name = ((char)('A' + i)).ToString() }); /*Añade input con las letras del abecedario A, A+1=B, B+1=C...*/
             }
+            /*Si el número que mete el usuario es menor que se disminuya los input*/
             else
             {
-                for (int i = numSubnets; i < userSubnets.Count; i++)
-                    while (userSubnets.Count > numSubnets)
+                for (int i = numSubnets; i < userSubnets.Count; i++) /*Lo recorremos al revés para borrar desde el último input*/
+                    while (userSubnets.Count > numSubnets) /*Mientras la cantidad sea mayor que el introducido nos vaya borrando*/
                     {
                         userSubnets.Remove(userSubnets[i]);
                     }
