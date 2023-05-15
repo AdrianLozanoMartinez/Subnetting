@@ -25,13 +25,14 @@ namespace Subnetting.Pages
 
         private void CreateSubnets() 
         {
-            //userSubnets = new List<Subnet>();
             for (int i = userSubnets.Count; i < numSubnets; i++)
-                userSubnets.Add(new Subnet{ Name = ((char)('A' + i)).ToString(), Size = 0 + i });
+                userSubnets.Add(new Subnet{ Name = ((char)('A' + i)).ToString() });
         }
 
         private void CalculateSubnets() //Método con toda la lógica de la calculadora
         {
+            error = "";
+            resultSubnets.Clear();
             bool valida = Regex.IsMatch(direccionIP, @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,2}\b");
             //Comprobamos que el formato de la IP es correcta 'X.X.X.X/X'
 
