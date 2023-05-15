@@ -146,6 +146,7 @@ input{
 
 #container2 {
     grid-area: container2;
+    margin-bottom: 5vh;
 }
 
 #boxTittle {
