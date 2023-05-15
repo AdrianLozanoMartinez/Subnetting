@@ -142,29 +142,30 @@ input{
 table, tr, td, th {
     border: solid black 2px;
     margin: 5vh;
-    padding: 1vh;
+    margin-left: 18%;
+    padding: 2vh;
     color: white;
 }
 
 th {
     background: rgb(20, 100, 68);
-
-}
-
-tr:nth-child(odd) {
-    background: rgb(11, 139, 99);
 }
 
 tr:nth-child(even) {
-    background: rgb(29, 143, 107);
+    background: rgb(11, 139, 99);
+}
+
+tr:nth-child(odd) {
+    background: rgb(66, 174, 140);
 }
 
 tr:hover {
     background: rgb(73, 146, 0);
-    
 }
 
-
+tr:hover td:hover {
+    transform: scale(1.2, 1.2);
+}
 
 
 
