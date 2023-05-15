@@ -32,9 +32,11 @@ namespace Subnetting.Pages
             }
             else
             {
-                Console.WriteLine("NOoo");
-                //for (int i = userSubnets.Count; i < numSubnets; i++)
-                //    userSubnets.Remove(userSubnets[i]);
+                for (int i = numSubnets; i < userSubnets.Count; i++)
+                    while (userSubnets.Count > numSubnets)
+                    {
+                        userSubnets.Remove(userSubnets[i]);
+                    }
             }
         }
 
