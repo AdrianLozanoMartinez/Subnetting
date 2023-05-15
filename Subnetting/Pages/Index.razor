@@ -39,41 +39,43 @@
         <button id="submit" @onclick="@CalculateSubnets">Calcular</button>
 
     }
-</div>
-@if (string.IsNullOrEmpty(error) && resultSubnets.Count > 0)
-{
-    <h4>Result:</h4>
+
     <div id="container2">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Tamaño</th>
-                    <th>Tamaño máximo</th>
-                    <th>Dirección Red</th>
-                    <th>Máscara red</th>
-                    <th>Rango Asignables</th>
-                    <th>Dirección Broadcast</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var subnet in resultSubnets)
-                {
-                    <tr>
-                        <td>@subnet.Name</td>
-                        <td>@subnet.Size</td>
-                        <td>@subnet.HostMax</td>
-                        <td>@subnet.IPAddress</td>
-                        <td>@subnet.Mask</td>
-                        <td>@subnet.AsignableRange</td>
-                        <td>@subnet.Broadcast</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        @if (string.IsNullOrEmpty(error) && resultSubnets.Count > 0)
+        {
+                <h4>Result:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tamaño</th>
+                            <th>Tamaño máximo</th>
+                            <th>Dirección Red</th>
+                            <th>Máscara red</th>
+                            <th>Rango Asignables</th>
+                            <th>Dirección Broadcast</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var subnet in resultSubnets)
+                        {
+                            <tr>
+                                <td>@subnet.Name</td>
+                                <td>@subnet.Size</td>
+                                <td>@subnet.HostMax</td>
+                                <td>@subnet.IPAddress</td>
+                                <td>@subnet.Mask</td>
+                                <td>@subnet.AsignableRange</td>
+                                <td>@subnet.Broadcast</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        }
+        else
+        {
+            <p>@error</p>
+        }
     </div>
-}
-else
-{
-    <p>@error</p>
-}
+
+</div>

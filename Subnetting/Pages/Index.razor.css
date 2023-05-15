@@ -10,7 +10,8 @@
     grid-template-areas: "major major cantidadRedes cantidadRedes"
         "subnets name1 size1 size"
         "subnets name2 size2 size"
-        "submit submit submit submit";
+        "submit submit submit submit"
+        "container2 container2 container2 container2";
     grid-gap: 3vh; /*Separación entre elementos*/
     margin-top: 20vh;
     margin-left: 30vh;
@@ -139,8 +140,8 @@ input{
     transform: scale(1.1, 1.1);
 }
 
-#container{
-    
+#container2 {
+    grid-area: container2;
 }
 
 table, tr, td, th {
