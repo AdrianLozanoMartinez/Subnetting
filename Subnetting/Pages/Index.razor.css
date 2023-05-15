@@ -139,12 +139,17 @@ input{
     transform: scale(1.1, 1.1);
 }
 
+#container{
+    
+}
+
 table, tr, td, th {
     border: solid black 2px;
     margin: 5vh;
-    margin-left: 18%;
+    margin-left: 21vh;
     padding: 2vh;
     color: white;
+    text-align: center;
 }
 
 th {
@@ -157,6 +162,11 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
     background: rgb(66, 174, 140);
+}
+
+td:nth-child(6) {
+    padding-left: 4vh;
+    padding-right: 4vh;
 }
 
 tr:hover {

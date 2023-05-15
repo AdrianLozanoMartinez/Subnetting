@@ -43,33 +43,35 @@
 @if (string.IsNullOrEmpty(error) && resultSubnets.Count > 0)
 {
     <h4>Result:</h4>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Tamaño</th>
-                <th>Tamaño máximo</th>
-                <th>Dirección Red</th>
-                <th>Máscara red</th>
-                <th>Rango Asignables</th>
-                <th>Dirección Broadcast</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var subnet in resultSubnets)
-            {
+    <div id="container2">
+        <table>
+            <thead>
                 <tr>
-                    <td>@subnet.Name</td>
-                    <td>@subnet.Size</td>
-                    <td>@subnet.HostMax</td>
-                    <td>@subnet.IPAddress</td>
-                    <td>@subnet.Mask</td>
-                    <td>@subnet.AsignableRange</td>
-                    <td>@subnet.Broadcast</td>
+                    <th>Nombre</th>
+                    <th>Tamaño</th>
+                    <th>Tamaño máximo</th>
+                    <th>Dirección Red</th>
+                    <th>Máscara red</th>
+                    <th>Rango Asignables</th>
+                    <th>Dirección Broadcast</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var subnet in resultSubnets)
+                {
+                    <tr>
+                        <td>@subnet.Name</td>
+                        <td>@subnet.Size</td>
+                        <td>@subnet.HostMax</td>
+                        <td>@subnet.IPAddress</td>
+                        <td>@subnet.Mask</td>
+                        <td>@subnet.AsignableRange</td>
+                        <td>@subnet.Broadcast</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
