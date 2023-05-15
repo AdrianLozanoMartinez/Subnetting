@@ -146,8 +146,7 @@ input{
 
 table, tr, td, th {
     border: solid black 2px;
-    margin: 5vh;
-    margin-left: 21vh;
+    margin: 2vh;
     padding: 2vh;
     color: white;
     text-align: center;
@@ -178,5 +177,6 @@ tr:hover td:hover {
     transform: scale(1.2, 1.2);
 }
 
-
+#boxTittle {
+}
 
