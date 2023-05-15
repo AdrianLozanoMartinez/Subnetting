@@ -144,6 +144,18 @@ input{
     grid-area: container2;
 }
 
+#boxTittle {
+    background-image: linear-gradient(to right,#175500, #017f05, #00a95a, #e1e8ec);
+    width: 100vh;
+    margin-left: 2vh;
+    padding: 1vh;
+    padding-left: 3vh;
+    border-radius: 35px 35px 0px 0px;
+    border: 2px solid #175500;
+    color: white;
+    font-size: 3vh;
+}
+
 table, tr, td, th {
     border: solid black 2px;
     margin: 2vh;
@@ -177,6 +189,4 @@ tr:hover td:hover {
     transform: scale(1.2, 1.2);
 }
 
-#boxTittle {
-}
 
