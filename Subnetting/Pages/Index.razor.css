@@ -149,16 +149,20 @@ input{
     margin-bottom: 5vh;
 }
 
+#error, #boxTittle {
+    padding: 1vh;
+    color: white;
+    font-size: 3vh;
+    text-align: center;
+}
+
 #boxTittle {
     background-image: linear-gradient(to right,black, #3e4132, #535b61, #535b61);
     width: 30vh;
     margin-left: 2vh;
-    padding: 1vh;
+    
     border-radius: 35px 35px 0px 0px;
     border: 2px solid #175500;
-    color: white;
-    font-size: 3vh;
-    text-align: center;
 }
 
 table, tr, td, th {
@@ -197,13 +201,10 @@ tr:hover td:hover {
 #error {
     background-image: linear-gradient(to right, #990000, #CC0000, #FF0000, #FF6666);
     width: 100vh;
-    margin-left: 2vh;
-    padding: 1vh;
+    margin-top: 10vh;
+    margin-left: 10vh;
     border-radius: 35px 35px 35px 35px;
-    border: 2px solid #175500;
-    color: white;
-    font-size: 3vh;
-    text-align: center;
+    border: 2px solid #FF0000;
 }
 
 
