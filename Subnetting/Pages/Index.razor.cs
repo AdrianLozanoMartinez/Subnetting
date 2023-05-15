@@ -8,11 +8,11 @@ namespace Subnetting.Pages
         private string error; //Variable en la que metemo un error, si es que hay
         private string direccionIP; //Variable de la dirección IP dada por el usuario
         private int numSubnets; //Variable de número de SubRedes pedidas por el usuario
-        private List<Subnet> userSubnets = new List<Subnet>(); //Lista de Subredes dadas por el usuario (solo se guarda el nombre y el 
-                                                               //número de hosts de cada subred
-        private List<Subnet> resultSubnets = new List<Subnet>(); //Lista de Subredes resultantes con todos los datos de la clase Subnet
 
-        public class Subnet //Clase Subnet que refleja los datos que hay que mostrar al usuario de cada subred
+        private List<Subnet> userSubnets = new List<Subnet>(); 
+        private List<Subnet> resultSubnets = new List<Subnet>(); 
+
+        public class Subnet 
         {
             public string Name { get; set; } //Nombre de la subred
             public int Size { get; set; } //Número de hosts de la subred pedidos por el usuario
@@ -23,13 +23,11 @@ namespace Subnetting.Pages
             public string Broadcast { get; set; } //Dirección broadcast de la subred
         }
 
-        private void CreateSubnets() //Método de crea y almacena los datos de las subredes dadas por el usuario
+        private void CreateSubnets() 
         {
             userSubnets = new List<Subnet>();
             for (int i = 0; i < numSubnets; i++)
-            {
                 userSubnets.Add(new Subnet());
-            }
         }
 
         private void CalculateSubnets() //Método con toda la lógica de la calculadora
@@ -85,7 +83,6 @@ namespace Subnetting.Pages
                         int hostsMaximosSubred = BinarioADecimal(numeroHostsConUnos) - 1;
 
                         bool noSupera = true;
-
                         foreach (Subnet userSubnet in userSubnets)
                         {
                             if (userSubnet.Size > hostsMaximosSubred && noSupera)
@@ -98,7 +95,6 @@ namespace Subnetting.Pages
                             bitsRedSubred[i] = DecimalABinario(i).PadLeft(bitsNecesarios, '0');
                         }
 
-                        int salto = hostsMaximosSubred + 2;
                         int count = 0;
 
                         if (noSupera)
@@ -117,8 +113,6 @@ namespace Subnetting.Pages
                                 string ipRemplazar1 = AndLogico(ipBinario, unosConCeros);
 
                                 string ipRemplazar2 = ipRemplazar1.Substring(0, ipBinario.Length - bitsRestantes.Length) + bitsRedSubred[count] + numeroHosts;
-
-                                int parteAzul = BinarioADecimal(ipRemplazar2.Substring(ipBinario.Length - bitsRestantes.Length, bitsRestantes.Length));
 
                                 string direccionIpBinario = ipRemplazar2.Substring(0, ipBinario.Length - (bitsRestantes.Length - bitsNecesarios)) + numeroHosts;
                                 string direccionBroadCastBinario = ipRemplazar2.Substring(0, ipBinario.Length - (bitsRestantes.Length - bitsNecesarios)) + numeroHostsConUnos;
@@ -142,39 +136,33 @@ namespace Subnetting.Pages
                         }
                         else
                             error = "El número de hosts supera el máximo de hosts por subred";
-                        //Notificamos al usuario si algunos de los hosts de alguna subred supera el máximo de hosts por subred
                     }
                     else
                         error = "El número de subredes supera el máximo de subredes que puede tener está dirección de IP";
-                    //Notificamos al usuario si el número de subredes que ha pedido supera el número máximod e subredes máximo que 
-                    //puede tener la dirección Ip que ha pedido
                 }
                 else
                     error = "Algunos de los valores de la IP (ya sean los de la dirección IP o el de la máscara) " +
                                       "no cumplen con el rango de valores que tienen que tener";
-                //Notificamos al usuario si algunos de los valores de la dirección IP o el valor de la máscara no 
-                //cumple el rango que tiene que cumplir
             }
             else
                 error = "El formato de la IP introducida no es correcto.El formato deberia ser: XXX.XXX.XXX.XXX/XX";
-            //Notificamos al usuario cuando el formato de la ip no es correcto
         }
 
 
-        // -------------------- MÉTODOS REUTILIZABLES --------------------
+        // ----------------------- MÉTODOS REUTILIZABLES -----------------------
 
         //MÉTODO QUE COMPRUEBA QUE EL NUMERO ESTÁ ENTRE 1 Y 255
-        public static bool Range(int num)
-        {
-            return num >= 0 && num < 256;
-        }
+        public static bool Range(int num) => num >= 0 && num< 256;
 
-        //METODO QUE PASA DE DECIMAL A BINARIO
+
+        //MÉTODO QUE PASA DE DECIMAL A BINARIO
         public static string DecimalABinario(int numDecimal) => Convert.ToString(numDecimal, 2);
 
-        //METODO QUE PASA DE BINARIO A DECIMAL
+
+        //MÉTODO QUE PASA DE BINARIO A DECIMAL
         public static int BinarioADecimal(string numBinario) => numBinario.Reverse().Select((c, i) => c == '1' ? (int)Math.Pow(2, i) : 0).Sum();
 
+        //MÉTODO QUE PASA DE IP EN BINARIO A SU FORMATO DECIMAL
         public static string IpBinarioADecimal(string ipBinario)
         {
             string result = "";
@@ -184,10 +172,10 @@ namespace Subnetting.Pages
             result += BinarioADecimal(ipBinario.Substring(16, 8)) + ".";
             result += BinarioADecimal(ipBinario.Substring(24, 8));
 
-
             return result;
         }
 
+        //MÉTODO QUE HACE EL AND LÓGICO ENTRE DOS NÚMEROS BINARIOS
         public static string AndLogico(string cadena1, string cadena2)
         {
             string resultado = "";
@@ -195,15 +183,10 @@ namespace Subnetting.Pages
             for (int i = 0; i < cadena1.Length; i++)
             {
                 if (cadena1[i] == '1' && cadena2[i] == '1')
-                {
                     resultado += "1";
-                }
                 else
-                {
                     resultado += "0";
-                }
             }
-
             return resultado;
         }
     }
