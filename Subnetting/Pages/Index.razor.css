@@ -136,8 +136,12 @@ input{
 }
 
 /*Ampliamos botón*/
-#submit:hover, #parte1:hover, #parte2:hover, #parte3:hover, #parte4:hover, #cantidadRedes:hover { /*Al pasar por encima*/
+#parte1:hover, #parte2:hover, #parte3:hover, #parte4:hover, #cantidadRedes:hover { /*Al pasar por encima*/
     transform: scale(1.1, 1.1);
+}
+
+#submit:hover { 
+    transform: scale(1.05, 1.05);
 }
 
 #container2 {
@@ -145,8 +149,8 @@ input{
 }
 
 #boxTittle {
-    background-image: linear-gradient(to right,black, #3e4132, #535b61, #e1e8ec);
-    width: 138vh;
+    background-image: linear-gradient(to right,black, #3e4132, #535b61, #535b61);
+    width: 30vh;
     margin-left: 2vh;
     padding: 1vh;
     padding-left: 3vh;
@@ -154,10 +158,11 @@ input{
     border: 2px solid #175500;
     color: white;
     font-size: 3vh;
+    text-align: center;
 }
 
 table, tr, td, th {
-    border: solid black 2px;
+    border: 2px solid #175500;
     margin-left: 2vh;
     padding: 2vh;
     color: white;
