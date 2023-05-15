@@ -37,10 +37,10 @@ namespace Subnetting.Pages
 
             if (valida)
             {
-                direccionIP = direccionIP.Replace('/', '.'); //Cambiamos la barra del final de la IP por un '.' para
+                string direccionIPsinBarra = direccionIP.Replace('/', '.'); //Cambiamos la barra del final de la IP por un '.' para
                                                              //poder hacer el .Split() sin problemas
 
-                string[] ipNumsString = direccionIP.Split('.'); //Metemos en un array cada valor de la ip 
+                string[] ipNumsString = direccionIPsinBarra.Split('.'); //Metemos en un array cada valor de la ip 
 
                 int[] ipNumsInt = new int[ipNumsString.Length]; //Ahora creamos un array de tipo 'int' y metemos todos los valores de
                                                                 //'ipNumsString' pero cambiados a 'int' para poder trabajar mejor con ellos
