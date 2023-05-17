@@ -1,0 +1,108 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+# IMPORTANT: You must add Read and write permissions, go to => Settings/Actions/Workflow permissions/Read and write permissions
+
+name: Deploy Blazor Webassembly App
+
+# Declaring custom variables
+env:
+  #Cambiamos PruebaDespliegueBlazor por el nombre de proyecto del trabajo de la carpeta del pc no del github
+  #PROJECT_NAME: PruebaDespliegueBlazor # Write here your project name
+  PROJECT_NAME: Subnetting
+  REPO_NAME: ${{ github.event.repository.name }} #guarda en la variable el nombre del repositorio
+
+#automático cuando hagamos push se ejecuta
+on:
+  push: 
+    branches:
+      - main
+  workflow_dispatch: #manual
+  
+#pasos que va a seguir...desplegar aplicaicón en github
+jobs:
+  deploy-to-github-pages:
+    # Use ubuntu-latest image to run steps on
+    runs-on: ubuntu-latest #porque se usa bush/script de linux
+    steps:
+    # Uses GitHub's checkout action to checkout code form the master branch
+    - uses: actions/checkout@v3 #descarga los archivos del main dentro de ubuntu, se coge...
+    
+    # Sets up .NET SDK
+    - name: Setup .NET SDK 
+      uses: actions/setup-dotnet@v3.0.3 #usa esto, descargar el kit para desarrollar con .Net 
+      with:
+        dotnet-version: | #compatible con estas versiones
+            6.0.X
+            7.0.X
+            
+     # Install wasm-tools, herramientas de webassembly, descargamos después del anterior
+    - name: Install wasm-tools
+      run: dotnet workload install wasm-tools #instalate las herramientas para trabajar sobre webassembly
+
+    # Publishes Blazor project to the release-folder
+    - name: Publish .NET Project
+    #Publica el proyecto que esta en la carpeta del mismo nombre, que use el perfil del Release esta pensado para el público y no queremos las cosas de debug que ocupa espacio
+    #transforma c# y otros en código de navegador ( css, html y js)
+    #RunAOTCompilation=true te lo pone al código de web assembly, la app va muy rapido pero compilar tarda más, porque hace el proceso de optimisación
+    #-o release -> Todo lo html , css y js lo meta (-o) en la carpeta release 
+      run: dotnet publish $PROJECT_NAME/$PROJECT_NAME.csproj -c Release -p:RunAOTCompilation=true -o release --nologo
+      
+     # Change base tag in all html files to include subfolder
+    - name: Change base tag
+      working-directory: release/wwwroot
+      run: |
+        find . -name "*.html" | while read htmlFile; do
+            #cambia \ del href del index al repositorio
+            sed -i 's/<base href="\/"/<base href="\/${{ env.REPO_NAME }}\/"/g' $htmlFile
+        done
+  
+      # Fix integrity errors, arreglar errores de integridad, coge el hash del fichero y lo cambia para ser usado en github
+    - name: Fix service-worker-assets.js hashes
+      working-directory: release/wwwroot
+      run: |
+        jsFile=$(<service-worker-assets.js)
+        # remove JavaScript from contents so it can be interpreted as JSON
+        json=$(echo "$jsFile" | sed "s/self.assetsManifest = //g" | sed "s/;//g")
+        # grab the assets JSON array
+        assets=$(echo "$json" | jq '.assets[]' -c)
+        for asset in $assets
+        do
+          oldHash=$(echo "$asset" | jq '.hash')
+          #remove leading and trailing quotes
+          oldHash="${oldHash:1:-1}"
+          path=$(echo "$asset" | jq '.url')
+          #remove leading and trailing quotes
+          path="${path:1:-1}"
+          newHash="sha256-$(openssl dgst -sha256 -binary $path | openssl base64 -A)"
+          
+          if [ $oldHash != $newHash ]; then
+            # escape slashes for json
+            oldHash=$(echo "$oldHash" | sed 's;/;\\/;g')
+            newHash=$(echo "$newHash" | sed 's;/;\\/;g')
+            echo "Updating hash for $path from $oldHash to $newHash"
+            # escape slashes second time for sed
+            oldHash=$(echo "$oldHash" | sed 's;/;\\/;g')
+            jsFile=$(echo -n "$jsFile" | sed "s;$oldHash;$newHash;g")
+          fi
+        done
+        echo -n "$jsFile" > service-worker-assets.js
+    
+    # Copy index.html to 404.html to serve the same file when a file is not found
+    #Cuando ocurre el error 404 de recurso no encontrado, maneja ese error si estamos fuera de blazor, porque dentro ya lo controla Blazor
+    - name: copy index.html to 404.html #copia a 404 porque es conocido por todos los navegadores, esto se ve y abajo es la dirección que se ejecuta
+      run: cp release/wwwroot/index.html release/wwwroot/404.html 
+
+    # Add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+    - name: Add .nojekyll file
+      run: touch release/wwwroot/.nojekyll #lo crea porque lo necesita github
+      
+    # Publishes app to GitHub Pages
+    #Hace un commit a la rama gh-pages y mete en el commit lo que hay en FOLDER: release/wwwroot
+    #Nos pide la clave que es GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit wwwroot to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: release/wwwroot
