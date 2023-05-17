@@ -1,6 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
+#MODIFICAMOS EN GITHUB DENTRO DEL REPOSITORIO: Settings -> Actions -> General -> Read and Write permissions
 # IMPORTANT: You must add Read and write permissions, go to => Settings/Actions/Workflow permissions/Read and write permissions
 
 name: Deploy Blazor Webassembly App
